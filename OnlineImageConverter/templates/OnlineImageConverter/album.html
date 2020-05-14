@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    Album: {{album_name}}
+    <p>
+        {% for image in image_list %}
+<ul><li><a href="{{image}}"><img height='150px' src="{{image}}"></a></li>
+</ul>
+        {% endfor %}
+    </p>
+{% endblock %}

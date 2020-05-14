@@ -1,0 +1,32 @@
+html {
+    background-color:red;
+
+}
+
+body {
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    float: center;
+    width :800px;
+    background-color : #1f1f1f;
+    color: 	#bebebe;
+    height: 1000px;
+}
+
+#header {
+    padding-top: 20px;
+
+}
+.link{
+    color: #bebebe;
+    text-decoration: none;
+}
+
+h1 {
+   color: #36CFFF;
+}
+
+h2 {
+    color: red;
+}

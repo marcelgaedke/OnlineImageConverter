@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>Session ID: {{session_id}}</p>
+    <p>The following files have been uploaded:</p>
+    <ul>
+    {% for f in filenames %}
+        <li><a href="{{f}}">{{f}}</a></li>
+    {% endfor %}
+    </ul>
+    <p>Total: {{number_of_files}}</p>
+    <form method ="POST" action="/Convert/?num={{number_of_files}}">
+        {% csrf_token %}
+        <button type="submit">Convert</button>
+    </form>
+{% endblock %}

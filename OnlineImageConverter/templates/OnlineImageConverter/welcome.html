@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Welcome to my personal image storage service.<br>
+To have access to all features please login.<br>
+You can continue as guest, to get a feel for the interface <br>
+    but you won't be able to upload files</p>
+
+<p><a href="{% url 'login'%}?next=/start/">Click to Login</a></p>
+<p><a href="/start/">Continue as Guest</a></p>
+{% endblock %}

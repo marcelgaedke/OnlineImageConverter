@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<p>Bucketname:{{env}}</p>
+    <p>Session Items:<br>
+    {{session_items}}</p>
+    <p>Session Key: {{session_key}}</p>
+    <p>User ID: {{user_id}}</p>
+    <form method="post" enctype="multipart/form-data" action="/UploadResult/">
+    {% csrf_token %}
+    Select Files for conversion
+    <input type="file" name="file_uploads" multiple>
+    <button type="submit">Upload</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+      <p>User ID : {{user_id}}</p>
+        User:  {{ user.get_username }}
+
+{% else %}
+      <p>You are currently not logged in. </p>
+    {% endif %}
+
+
+<p>startpage.<br>
+<p>List of Photo Albums</p>
+{% for key in keys %}
+<ol>
+    <li><a href="/album/?album_name={{key}}">{{key}}</a></li>
+</ol>
+{% endfor %}
+
+{% endblock %}
