@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-    {% if conversion_finished == False %}
-        <meta http-equiv="refresh" content="5">
-    {% endif %}
-{% endblock %}
+
 
 {% block content %}
-    <p>cwd: {{cwd}}</p>
-    <p>Converting Images</p>
-    <p>Conversion Finished: {{ conversion_finished }}</p>
+
+
+    <p>Conversion Finished: </p>
     <ul>
-    {% for f in files %}
-        <li><a href="{{file_url}}{{f.0}}" ><img  src="{{file_url}}{{f.1}}"/></a></li>
+    {% for i in image_list %}
+        <li><a class="link" href="{{i.1}}" >{{i.0}}</a></li>
     {% endfor %}
     </ul>
+{{source}}xxx
+{{destination}}
+
+
 {% endblock %}

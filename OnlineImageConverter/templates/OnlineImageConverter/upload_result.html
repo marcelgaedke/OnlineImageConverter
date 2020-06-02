@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>Session ID: {{session_id}}</p>
     <p>The following files have been uploaded:</p>
     <ul>
     {% for f in filenames %}
-        <li><a href="{{f}}">{{f}}</a></li>
+        <li class="list">{{f.0}}</li>
     {% endfor %}
     </ul>
     <p>Total: {{number_of_files}}</p>

@@ -1,5 +1,5 @@
 html {
-    background-color:red;
+    background-color:black;
 
 }
 
@@ -20,13 +20,18 @@ body {
 }
 .link{
     color: #bebebe;
-    text-decoration: none;
+    text-decoration: underline;
+}
+
+.list{
+    color: #bebebe;
+    text-decoration: underline;
 }
 
 h1 {
-   color: #36CFFF;
+    color: #bebebe;
 }
 
 h2 {
-    color: red;
+    color: #bebebe;
 }

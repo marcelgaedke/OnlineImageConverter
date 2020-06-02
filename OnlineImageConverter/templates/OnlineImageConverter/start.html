@@ -3,20 +3,31 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-      <p>User ID : {{user_id}}</p>
-        User:  {{ user.get_username }}
+      <p>Hello, {{ user.get_username }}. Welcome back!<br>
+          {%if keys%}
+              These are your Photo Albums:
+              <ul>
+              {% for key in keys %}
+                    <li><a class="list" href="/album/?album_name={{key}}">{{key}}</a></li>
+               {% endfor %}
+              </ul>
+           {% else %}
+            <p>You have no Photo Albums</p>
+           {% endif %}
 
 {% else %}
-      <p>You are currently not logged in. </p>
-    {% endif %}
+      <p>Welcome Guest.<br>
+      Please log in to access your Photo Albums.</p>
+{% endif %}
 
 
-<p>startpage.<br>
-<p>List of Photo Albums</p>
-{% for key in keys %}
-<ol>
-    <li><a href="/album/?album_name={{key}}">{{key}}</a></li>
-</ol>
-{% endfor %}
+<hr>
+<form method="post" enctype="multipart/form-data" action="/UploadResult/">
+    {% csrf_token %}
+    <p>Upload Images to Convert:</p>
+    <input type="file" name="file_uploads"
+           {% if user.is_authenticated %} multiple {% endif %}>
+    <button type="submit">Upload</button>
+</form>
 
 {% endblock %}

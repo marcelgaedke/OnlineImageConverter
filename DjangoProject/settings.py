@@ -155,11 +155,13 @@ print('STATIC_FILES_ON_S3: ', STATIC_FILES_ON_S3)
 MEDIA_FILES_ON_S3 = os.getenv('MEDIA_FILES_ON_S3')
 print('MEDIA_FILES_ON_S3: ', MEDIA_FILES_ON_S3)
 
+AWS_STATIC_BUCKET_NAME = os.getenv('AWS_STATIC_BUCKET_NAME')
+AWS_MEDIA_BUCKET_NAME = 'django-media-public-1337'
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
 if STATIC_FILES_ON_S3 or MEDIA_FILES_ON_S3:
     # aws settings
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_STATIC_BUCKET_NAME = os.getenv('AWS_STATIC_BUCKET_NAME')
     AWS_DEFAULT_ACL = 'public-read'
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STATIC_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
@@ -176,7 +178,6 @@ else:
 if MEDIA_FILES_ON_S3=="True":
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
-    AWS_MEDIA_BUCKET_NAME = 'django-media-public-1337'
     AWS_S3_MEDIA_DOMAIN = f'{AWS_MEDIA_BUCKET_NAME}.s3.amazonaws.com'
     # MEDIA_URL = f'https://{AWS_S3_MEDIA_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_MEDIA_DOMAIN}/'
