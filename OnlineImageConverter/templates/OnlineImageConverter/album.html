@@ -1,11 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-    Album: {{album_name}}
-    <p>
-        {% for image in image_list %}
-<ul><li><a href="{{image}}"><img height='150px' src="{{image}}"></a></li>
-</ul>
-        {% endfor %}
-    </p>
+<p>Album: {{album.album_name}}</p>
+{% if fileupload %}
+    {% if fileupload.error %}
+        <h3>There seems to be a problem<br>{{fileupload.error}}</h3>
+    {% else %}
+        <h2>{{fileupload.num_files}} files have been uploaded</h2>
+    {% endif %}
+<br>
+{% endif %}
+<div class="block">
+    {% if file_list %}
+            {% for file in file_list %}
+            <div class="image_div">
+                <a href="{{file.file_url}}"><img class="thumb" src="{{file.file_url}}"></a>
+            </div>
+
+            {% endfor %}
+
+    {% else %}
+        This Album has no images
+    {% endif %}
+<br>
+</div>
+<br>
+<hr><br>
+<form method="post" enctype="multipart/form-data" action="/upload/{{album.album_id}}/">
+    {% csrf_token %}
+    <p>Upload new images:</p>
+    <input type="file" name="file_uploads"
+           {% if user.is_authenticated %} multiple {% endif %}><br>
+    <button type="submit">Upload</button><br>
+    <br>
+        {% if not user.is_authenticated %}
+    <p>Note: As guest user you can only upload one file at a time and the file size is limited to 1 MB</p>
+        {% endif %}<br>
+</form>
+<br><br>
+<p><a class="link" href="/start">Back</a></p>
+
+
+
+
 {% endblock %}

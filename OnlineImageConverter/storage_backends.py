@@ -4,7 +4,7 @@ class MediaStorage(S3Boto3Storage):
     location = 'media'
     file_overwrite = False
 
-class CustomMediaStorage(S3Boto3Storage):
+class AWS_S3_MediaStorage(S3Boto3Storage):
     bucket_name = AWS_MEDIA_BUCKET_NAME
     custom_domain = '{}.s3.amazonaws.com'.format(bucket_name)
     location = ''

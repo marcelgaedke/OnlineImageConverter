@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    Album: {{album.album_id}} - {{album.album_name}}<br>
     <p>The following files have been uploaded:</p>
     <ul>
-    {% for f in filenames %}
-        <li class="list">{{f.0}}</li>
+    {% for f in file_list %}
+        <li class="list">{{f}}</li>
     {% endfor %}
     </ul>
     <p>Total: {{number_of_files}}</p>
-    <form method ="POST" action="/Convert/?num={{number_of_files}}">
-        {% csrf_token %}
-        <button type="submit">Convert</button>
-    </form>
+
 {% endblock %}

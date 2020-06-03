@@ -8,20 +8,19 @@
 
 
             <link rel="stylesheet" type="text/css" href="{% static 'OnlineImageConverter/StyleAssets/main_style.css' %} " />
-          <title>Online Image Converter</title>
+          <title>Photo Cloud</title>
       </head>
 
       <body>
         <div id="header">
-          <h1>Online Image Converter</h1>
+          <h1>Photo Cloud</h1>
           {% load static %}
-            <h2>convert images from CR2 -> JPEG </h2></p>
         </div>
         <p>
             {% if user.is_authenticated %}
-             User: {{ user.get_username }} (<a class="link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>)
+             User: {{ user.get_username }} (<a class="link" href="{% url 'logout'%}?next=/">Logout</a>)
            {% else %}
-             User: Guest (<a class= "link" href="{% url 'login'%}?next={{request.path}}">Login</a>)
+             User: Guest (<a class= "link" href="{% url 'login'%}?next=/start/">Login</a>)
            {% endif %}
         </p>
             <hr>

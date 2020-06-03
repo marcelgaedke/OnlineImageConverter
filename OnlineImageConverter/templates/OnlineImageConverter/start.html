@@ -2,32 +2,32 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
-      <p>Hello, {{ user.get_username }}. Welcome back!<br>
-          {%if keys%}
-              These are your Photo Albums:
-              <ul>
-              {% for key in keys %}
-                    <li><a class="list" href="/album/?album_name={{key}}">{{key}}</a></li>
-               {% endfor %}
-              </ul>
-           {% else %}
-            <p>You have no Photo Albums</p>
-           {% endif %}
 
-{% else %}
-      <p>Welcome Guest.<br>
-      Please log in to access your Photo Albums.</p>
-{% endif %}
+  <p>
+      {% if user.is_authenticated %} Hello, {{ user.get_username }}. Welcome back!
+      {% else %}
+        Hello, Guest!
+      {% endif %}<br>
+      {%if albums%}
+          These are your Photo Albums:
+          <ul>
+          {% for album in albums %}
+                <li><a class="list" href="/album/{{album.album_id}}">{{album.album_name}}</a></li>
+           {% endfor %}
+          </ul>
+       {% else %}
+          You have no Photo Albums
+       {% endif %}
+  </p>
 
 
 <hr>
-<form method="post" enctype="multipart/form-data" action="/UploadResult/">
-    {% csrf_token %}
-    <p>Upload Images to Convert:</p>
-    <input type="file" name="file_uploads"
-           {% if user.is_authenticated %} multiple {% endif %}>
-    <button type="submit">Upload</button>
+<form method="post" enctype="multipart/form-data" action="/create_album/">
+{% csrf_token %}
+<p>Create new album:</p>
+<input type="text" width="35" name="album_name">
+    <br>
+<button type="submit">create</button>
 </form>
 
 {% endblock %}
